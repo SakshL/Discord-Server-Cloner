@@ -73,18 +73,14 @@ $ npm run start
 
 
 ## Features
--   Real time messaging 
--   Loads User Data upon login (Servers, Channels, Roles)
--   Loading logo of Discord between page renderings
--   Creation and Joining Servers
--   Creation of Channels in a Server
--   Server Settings (Change name and delete)
--   Channel Settings (Change name and delete)
--   Reply to messages
--   Upload and send images, audio files
--   Auto render video from links
--   Timestamps for messages
--   Create new Roles unique to each server
+- Clone Channels
+- Channel Permissions
+- Server Roles
+- Server Name
+- Server Banner / Avatar
+- Server Emojis
+- Server Settings 
+- Etc
 
 ## Contribution
 Contributions are always Welcome...
