@@ -96,3 +96,14 @@ Contributions are always Welcome...
     -   Adding New Feature
     -   Bug Fixes
 -   Push your work and Create a Pull Request.....
+
+### Issues
+If you have any issues with the project or you found a bug please create [new issue here](https://github.com/NotSaksh/Discord-Server-Cloner/issues)
+
+
+### Pull Requests
+When submitting a pull request:
+
+- Clone the repo.
+- Create a branch off of master and give it a meaningful name (e.g. my-awesome-new-feature).
+- Open a [pull request](https://github.com/NotSaksh/Discord-Server-Cloner/pulls) on [GitHub](https://github.com) and describe the feature or fix.
