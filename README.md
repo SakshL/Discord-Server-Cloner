@@ -58,12 +58,12 @@ $ npm run start
 
 ## Links
 
-- [Website](https://arihant-jain-09.github.io/discord-clone/)
-- [GitHub](https://github.com/arihant-jain-09/discord-clone)
+- [Website](https://notyoursakshyam.notsakshyam6966.repl.co/)
+- [GitHub](https://github.com/NotSaksh)
 
 ## Deployed
 
-- [GitHub](https://arihant-jain-09.github.io/discord-clone/)
+- [GitHub](https://github.com/NotSaksh/Discord-Server-Cloner/)
 
 ## Features
 -   Real time messaging 
