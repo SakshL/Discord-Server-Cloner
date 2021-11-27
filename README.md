@@ -26,7 +26,7 @@
 
 <div align="center">
 	<a href="https://github.com/NotSaksh"><img src="https://cdn.discordapp.com/attachments/908669547459018825/914122544351707206/unknown.png" alt="screenshot" /></a>
-</div>.
+</div>
 
 ## Table of contents
 
@@ -87,9 +87,9 @@ $ npm run start
 ## Contribution
 Contributions are always Welcome...
 
--   Fork the repository
--   Improve current program by
-    -   improving functionality
-    -   adding new feature
-    -   bug fixes
+-   Fork The Repository
+-   Improve Current Program By
+    -   Improving Functionality
+    -   Adding New Feature
+    -   Bug Fixes
 -   Push your work and Create a Pull Request.....
