@@ -65,7 +65,7 @@ $ npm run start
 ## Deployed
 
 - [GitHub](https://github.com/NotSaksh/Discord-Server-Cloner/)
-- [Repl](https://replit.com/@NotSakshyam6966/Discord-Server-Cloner)
+- [Repl](https://replit.com/@NotSaksh/Discord-Server-Cloner-3#.replit)
 
 
 ## Links
