@@ -38,6 +38,11 @@
 - [Website Score](#Websitescore)
 - [Contribution](#Contribution)
 
+## Need Help?
+
+- [Instagram](https://www.instagram.com/notsaksh6969/)
+- [Discord](https://discord.gg/7YtDujvD)
+
 ## About
 
 A clone of Discord with features like realtime chat app, roles, file sharing, servers...etc,
@@ -55,16 +60,17 @@ build for production and launch server
 $ npm run build
 $ npm run start
 ```
+## Deployed
+
+- [GitHub](https://github.com/NotSaksh/Discord-Server-Cloner/)
+- [Repl](https://replit.com/@NotSakshyam6966/Discord-Server-Cloner)
+
 
 ## Links
 
 - [Website](https://notyoursakshyam.notsakshyam6966.repl.co/)
 - [GitHub](https://github.com/NotSaksh)
 
-## Deployed
-
-- [GitHub](https://github.com/NotSaksh/Discord-Server-Cloner/)
-- [Repl](https://replit.com/@NotSakshyam6966/Discord-Server-Cloner)
 
 ## Features
 -   Real time messaging 
