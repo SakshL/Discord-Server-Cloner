@@ -45,12 +45,14 @@
 
 ## About
 
-A clone of Discord with features like realtime chat app, roles, file sharing, servers...etc,
-- React is used along with Redux to power front-end.
-- Redux to manage state along with Redux Saga.
-- React Routing with Error handling and Discord Loading between pages.
-- Firebase is used for authentication and firestore to store messages, users and servers.
-- Material UI is used along with SASS with a little of styled components for UI.
+A Discord Server Cloner Which Can Clone Any Discord Server In Just Few Minutes.
+- Clone Channels
+- Channel Permissions
+- Server Roles
+- Server Name
+- Server Banner / Avatar
+- Server Emojis
+- Server Settings 
 
 ## Installation
 ```js
