@@ -45,6 +45,7 @@
 
 ## About
 
+```diff
 A Discord Server Cloner Which Can Clone Any Discord Server In Just Few Minutes.
 - Clone Channels
 - Channel Permissions
@@ -53,6 +54,7 @@ A Discord Server Cloner Which Can Clone Any Discord Server In Just Few Minutes.
 - Server Banner / Avatar
 - Server Emojis
 - Server Settings 
+```
 
 ## Installation
 ```js
