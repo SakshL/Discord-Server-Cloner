@@ -1,4 +1,4 @@
-mytitle = "Lua Cloner - Developed by pepper#5784"
+mytitle = "Lua Cloner - Developed by NotSaksh#6969"
 from os import system
 system("title "+mytitle)
 import psutil
