@@ -25,7 +25,7 @@
 ## Screenshots
 
 <div align="center">
-	<a href="https://github.com/arihant-jain-09/discord-clone"><img src="https://i.ibb.co/hR5f1vQ/2021-05-14-15-39-57-Discord-Your-Place-to-Talk-and-Hang-Out.png" alt="screenshot" /></a>
+	<a href="https://github.com/NotSaksh"><img src="https://cdn.discordapp.com/attachments/908669547459018825/914122544351707206/unknown.png" alt="screenshot" /></a>
 </div>
 
 ## Table of contents
