@@ -45,7 +45,6 @@
 
 ## About
 
-```diff
 *A Discord Server Cloner Which Can Clone Any Discord Server In Just Few Minutes.*
 - Clone Channels
 - Channel Permissions
@@ -54,7 +53,6 @@
 - Server Banner / Avatar
 - Server Emojis
 - Server Settings 
-```
 
 ## Installation
 ```js
@@ -77,6 +75,7 @@ $ npm run start
 
 
 ## Features
+```diff
 - Clone Channels
 - Channel Permissions
 - Server Roles
@@ -85,6 +84,7 @@ $ npm run start
 - Server Emojis
 - Server Settings 
 - Etc
+```
 
 ## Contribution
 Contributions are always Welcome...
