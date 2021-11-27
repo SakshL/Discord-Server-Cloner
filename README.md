@@ -76,14 +76,15 @@ $ npm run start
 
 ## Features
 ```diff
-- Clone Channels
-- Channel Permissions
-- Server Roles
-- Server Name
-- Server Banner / Avatar
-- Server Emojis
-- Server Settings 
-- Etc
++ Clone Channels
++ Channel Permissions
++ Server Roles
++ Server Name
++ Server Banner / Avatar
++ Server Emojis
++ Server Settings 
+- Server Messages
+- Server Members
 ```
 
 ## Contribution
