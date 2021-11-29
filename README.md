@@ -57,10 +57,9 @@
 ## Installation
 ```js
 #install dependencies
-$ npm install
+$ pip install
 build for production and launch server
-$ npm run build
-$ npm run start
+$ python3 main.py
 ```
 ## Deployed
 
