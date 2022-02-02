@@ -1,73 +1,61 @@
-mytitle = "Lua Cloner - Developed by NotSaksh#6969"
-from os import system
-system("title "+mytitle)
-import psutil
-from pypresence import Presence
-import time
-import sys
-client_id = 'Your Account ID'
-import discord
-import asyncio
-import colorama
-from colorama import Fore, init, Style
 import platform
+import os
+import discord
 from serverclone import Clone
+from colorama import Fore
+
+if platform.system() == "Windows":
+    import ctypes
+    ctypes.windll.kernel32.SetConsoleTitleW(
+        "Lua Cloner - Developed by NotSaksh#6969 and igna#0001")
+    os.system("cls")
+elif platform.system() == "Linux" or "posix":
+    os.system(
+        "echo -en \"\033]0;Lua Cloner - Developed by NotSaksh#6969 and igna#0001\a\"")
+    os.system("clear")
 
 client = discord.Client()
-os = platform.system()
-if os == "Windows":
-    system("cls")
-else:
-    system("clear")
-    print(chr(27) + "[2J")
-print(f"""{Fore.RED}
 
-                                    ██╗░░░░░██╗░░░██╗░█████╗░  ░█████╗░██╗░░░░░░█████╗░███╗░░██╗███████╗██████╗░
-                                    ██║░░░░░██║░░░██║██╔══██╗  ██╔══██╗██║░░░░░██╔══██╗████╗░██║██╔════╝██╔══██╗
-                                    ██║░░░░░██║░░░██║███████║  ██║░░╚═╝██║░░░░░██║░░██║██╔██╗██║█████╗░░██████╔╝
-                                    ██║░░░░░██║░░░██║██╔══██║  ██║░░██╗██║░░░░░██║░░██║██║╚████║██╔══╝░░██╔══██╗
-                                    ███████╗╚██████╔╝██║░░██║  ╚█████╔╝███████╗╚█████╔╝██║░╚███║███████╗██║░░██║
-                                    ╚══════╝░╚═════╝░╚═╝░░╚═╝  ░╚════╝░╚══════╝░╚════╝░╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝
-{Style.RESET_ALL}
-                                                            {Fore.MAGENTA}Developed by: NotSaksh#6969.{Style.RESET_ALL}
-        """)
-token = input(f'Please enter your token:\n >')
-guild_s = input('Please enter guild id you want to copy:\n >')
-guild = input('Please enter guild id where you want to copy:\n >')
-input_guild_id = guild_s  # <-- input guild id
-output_guild_id = guild  # <-- output guild id
-token = token  # <-- your Account token
+token = input(f'Please enter your token: ')
+guild = input('Please enter guild id you want to copy: ')
+output = input('Please enter guild id where you want to copy: ')
 
-
-print("  ")
-print("  ")
 
 @client.event
 async def on_ready():
     extrem_map = {}
+    print(f"""{Fore.LIGHTMAGENTA_EX}
+                                            ██╗     ██╗   ██╗ █████╗  ██████╗██╗      ██████╗ ███╗   ██╗███████╗██████╗ 
+                                            ██║     ██║   ██║██╔══██╗██╔════╝██║     ██╔═══██╗████╗  ██║██╔════╝██╔══██╗
+                                            ██║     ██║   ██║███████║██║     ██║     ██║   ██║██╔██╗ ██║█████╗  ██████╔╝
+                                            ██║     ██║   ██║██╔══██║██║     ██║     ██║   ██║██║╚██╗██║██╔══╝  ██╔══██╗
+                                            ███████╗╚██████╔╝██║  ██║╚██████╗███████╗╚██████╔╝██║ ╚████║███████╗██║  ██║
+                                            ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+                                                                            
+    {Fore.RESET}""")
     print(f"Logged In as : {client.user}")
     print("Cloning Server")
-    guild_from = client.get_guild(int(input_guild_id))
-    guild_to = client.get_guild(int(output_guild_id))
-    await Clone.guild_edit(guild_to, guild_from)
-    await Clone.roles_delete(guild_to)
-    await Clone.channels_delete(guild_to)
-    await Clone.roles_create(guild_to, guild_from)
-    await Clone.categories_create(guild_to, guild_from)
-    await Clone.channels_create(guild_to, guild_from)
-    print(f"""{Fore.GREEN}
+    guild_2 = client.get_guild(int(guild))
+    guild_1 = client.get_guild(int(output))
+    await Clone.guild_edit(guild_1, guild_2)
+    await Clone.roles_delete(guild_1)
+    await Clone.channels_delete(guild_1)
+    await Clone.roles_create(guild_1, guild_2)
+    await Clone.categories_create(guild_1, guild_2)
+    await Clone.channels_create(guild_1, guild_2)
+    print(f"""{Fore.LIGHTGREEN_EX}
 
 
-                                            ░█████╗░██╗░░░░░░█████╗░███╗░░██╗███████╗██████╗░
-                                            ██╔══██╗██║░░░░░██╔══██╗████╗░██║██╔════╝██╔══██╗
-                                            ██║░░╚═╝██║░░░░░██║░░██║██╔██╗██║█████╗░░██║░░██║
-                                            ██║░░██╗██║░░░░░██║░░██║██║╚████║██╔══╝░░██║░░██║
-                                            ╚█████╔╝███████╗╚█████╔╝██║░╚███║███████╗██████╔╝
-                                            ░╚════╝░╚══════╝░╚════╝░╚═╝░░╚══╝╚══════╝╚═════╝░
-
-    {Style.RESET_ALL}""")
-    await asyncio.sleep(5)
-    client.close()
+                                             ██████╗██╗      ██████╗ ███╗   ██╗███████╗██████╗ 
+                                            ██╔════╝██║     ██╔═══██╗████╗  ██║██╔════╝██╔══██╗
+                                            ██║     ██║     ██║   ██║██╔██╗ ██║█████╗  ██║  ██║
+                                            ██║     ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║  ██║
+                                            ╚██████╗███████╗╚██████╔╝██║ ╚████║███████╗██████╔╝
+                                             ╚═════╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═════╝ 
+                                                   
+    {Fore.RESET}""")
+    input("Press Any Key to exit...")
+    exit()
 
 
 client.run(token, bot=False)

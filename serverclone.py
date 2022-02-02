@@ -1,33 +1,35 @@
 import discord
-from colorama import Fore, init, Style
+from colorama import Fore
 
 
 def print_add(message):
-    print(f'{Fore.GREEN}[+]{Style.RESET_ALL} {message}')
+    print(f'{Fore.GREEN}[+]{Fore.RESET} {message}')
+
 
 def print_delete(message):
-    print(f'{Fore.RED}[-]{Style.RESET_ALL} {message}')
+    print(f'{Fore.RED}[-]{Fore.RESET} {message}')
+
 
 def print_warning(message):
-    print(f'{Fore.RED}[WARNING]{Style.RESET_ALL} {message}')
+    print(f'{Fore.RED}[WARNING]{Fore.RESET} {message}')
 
 
 def print_error(message):
-    print(f'{Fore.RED}[ERROR]{Style.RESET_ALL} {message}')
+    print(f'{Fore.RED}[ERROR]{Fore.RESET} {message}')
 
 
 class Clone:
     @staticmethod
     async def roles_delete(guild_to: discord.Guild):
-            for role in guild_to.roles:
-                try:
-                    if role.name != "@everyone":
-                        await role.delete()
-                        print_delete(f"Deleted Role: {role.name}")
-                except discord.Forbidden:
-                    print_error(f"Error While Deleting Role: {role.name}")
-                except discord.HTTPException:
-                    print_error(f"Unable to Delete Role: {role.name}")
+        for role in guild_to.roles:
+            try:
+                if role.name != "@everyone":
+                    await role.delete()
+                    print_delete(f"Deleted Role: {role.name}")
+            except discord.Forbidden:
+                print_error(f"Error While Deleting Role: {role.name}")
+            except discord.HTTPException:
+                print_error(f"Unable to Delete Role: {role.name}")
 
     @staticmethod
     async def roles_create(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -96,7 +98,8 @@ class Clone:
                         if category.name == channel_text.category.name:
                             break
                     except AttributeError:
-                        print_warning(f"Channel {channel_text.name} doesn't have any category!")
+                        print_warning(
+                            f"Channel {channel_text.name} doesn't have any category!")
                         category = None
                         break
 
@@ -121,11 +124,14 @@ class Clone:
                     await new_channel.edit(category=category)
                 print_add(f"Created Text Channel: {channel_text.name}")
             except discord.Forbidden:
-                print_error(f"Error While Creating Text Channel: {channel_text.name}")
+                print_error(
+                    f"Error While Creating Text Channel: {channel_text.name}")
             except discord.HTTPException:
-                print_error(f"Unable To Creating Text Channel: {channel_text.name}")
+                print_error(
+                    f"Unable To Creating Text Channel: {channel_text.name}")
             except:
-                print_error(f"Error While Creating Text Channel: {channel_text.name}")
+                print_error(
+                    f"Error While Creating Text Channel: {channel_text.name}")
 
         category = None
         for channel_voice in guild_from.voice_channels:
@@ -135,7 +141,8 @@ class Clone:
                         if category.name == channel_voice.category.name:
                             break
                     except AttributeError:
-                        print_warning(f"Channel {channel_voice.name} doesn't have any category!")
+                        print_warning(
+                            f"Channel {channel_voice.name} doesn't have any category!")
                         category = None
                         break
 
@@ -150,7 +157,7 @@ class Clone:
                         position=channel_voice.position,
                         bitrate=channel_voice.bitrate,
                         user_limit=channel_voice.user_limit,
-                        )
+                    )
                 except:
                     new_channel = await guild_to.create_voice_channel(
                         name=channel_voice.name,
@@ -160,12 +167,14 @@ class Clone:
                     await new_channel.edit(category=category)
                 print_add(f"Created Voice Channel: {channel_voice.name}")
             except discord.Forbidden:
-                print_error(f"Error While Creating Voice Channel: {channel_voice.name}")
+                print_error(
+                    f"Error While Creating Voice Channel: {channel_voice.name}")
             except discord.HTTPException:
-                print_error(f"Unable To Creating Voice Channel: {channel_voice.name}")
+                print_error(
+                    f"Unable To Creating Voice Channel: {channel_voice.name}")
             except:
-                print_error(f"Error While Creating Voice Channel: {channel_voice.name}")
-
+                print_error(
+                    f"Error While Creating Voice Channel: {channel_voice.name}")
 
     @staticmethod
     async def emojis_delete(guild_to: discord.Guild):
@@ -207,6 +216,7 @@ class Clone:
                     await guild_to.edit(icon=icon_image)
                     print_add(f"Guild Icon Changed: {guild_to.name}")
                 except:
-                    print_error(f"Error While Changing Guild Icon: {guild_to.name}")
+                    print_error(
+                        f"Error While Changing Guild Icon: {guild_to.name}")
         except discord.Forbidden:
             print_error(f"Error While Changing Guild Icon: {guild_to.name}")
