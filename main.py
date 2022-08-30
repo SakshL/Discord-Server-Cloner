@@ -1,6 +1,6 @@
-import ctypes
 from os import system
-ctypes.windll.kernel32.SetConsoleTitleW(f"Lua Cloner - Developed by NotSaksh#6969")
+mytitle = "Lua Cloner - Developed by NotSaksh#6969"
+system("title "+mytitle)
 import psutil
 import time
 import sys
