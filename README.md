@@ -57,7 +57,10 @@
 ## Installation
 ```js
 #install dependencies
-$ pip install
+// This Code is using old version of Discord.py please use command:
+$ pip install -U discord==1.7.3
+$ pip install -U discord.py==1.7.3
+
 build for production and launch server
 $ python3 main.py
 ```
