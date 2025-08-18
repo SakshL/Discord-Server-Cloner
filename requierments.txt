@@ -1,0 +1,4 @@
+psutil
+discord.py
+asyncio
+colorama

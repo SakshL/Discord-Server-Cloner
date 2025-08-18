@@ -57,8 +57,8 @@
 ## Installation
 ```js
 #install dependencies
-$ pip install
-build for production and launch server
+$ pip install -r requierments.txt
+#build for production and launch server
 $ python3 main.py
 ```
 ## Deployed
