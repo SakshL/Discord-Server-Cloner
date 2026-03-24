@@ -1,6 +1,8 @@
 import discord
+import aiohttp
 from colorama import Fore, init, Style
 
+init()
 
 def print_add(message):
     print(f'{Fore.GREEN}[+]{Style.RESET_ALL} {message}')
@@ -73,37 +75,33 @@ class Clone:
                 overwrites_to = {}
                 for key, value in channel.overwrites.items():
                     role = discord.utils.get(guild_to.roles, name=key.name)
-                    overwrites_to[role] = value
+                    if role:
+                        overwrites_to[role] = value
                 new_channel = await guild_to.create_category(
                     name=channel.name,
                     overwrites=overwrites_to)
                 await new_channel.edit(position=channel.position)
                 print_add(f"Created Category: {channel.name}")
             except discord.Forbidden:
-                print_error(f"Error While Deleting Category: {channel.name}")
+                print_error(f"Error While Creating Category: {channel.name}")
             except discord.HTTPException:
-                print_error(f"Unable To Delete Category: {channel.name}")
+                print_error(f"Unable To Create Category: {channel.name}")
 
     @staticmethod
     async def channels_create(guild_to: discord.Guild, guild_from: discord.Guild):
         channel_text: discord.TextChannel
         channel_voice: discord.VoiceChannel
-        category = None
         for channel_text in guild_from.text_channels:
             try:
-                for category in guild_to.categories:
-                    try:
-                        if category.name == channel_text.category.name:
-                            break
-                    except AttributeError:
-                        print_warning(f"Channel {channel_text.name} doesn't have any category!")
-                        category = None
-                        break
+                category = None
+                if channel_text.category:
+                    category = discord.utils.get(guild_to.categories, name=channel_text.category.name)
 
                 overwrites_to = {}
                 for key, value in channel_text.overwrites.items():
                     role = discord.utils.get(guild_to.roles, name=key.name)
-                    overwrites_to[role] = value
+                    if role:
+                        overwrites_to[role] = value
                 try:
                     new_channel = await guild_to.create_text_channel(
                         name=channel_text.name,
@@ -123,26 +121,21 @@ class Clone:
             except discord.Forbidden:
                 print_error(f"Error While Creating Text Channel: {channel_text.name}")
             except discord.HTTPException:
-                print_error(f"Unable To Creating Text Channel: {channel_text.name}")
+                print_error(f"Unable To Create Text Channel: {channel_text.name}")
             except:
                 print_error(f"Error While Creating Text Channel: {channel_text.name}")
 
-        category = None
         for channel_voice in guild_from.voice_channels:
             try:
-                for category in guild_to.categories:
-                    try:
-                        if category.name == channel_voice.category.name:
-                            break
-                    except AttributeError:
-                        print_warning(f"Channel {channel_voice.name} doesn't have any category!")
-                        category = None
-                        break
+                category = None
+                if channel_voice.category:
+                    category = discord.utils.get(guild_to.categories, name=channel_voice.category.name)
 
                 overwrites_to = {}
                 for key, value in channel_voice.overwrites.items():
                     role = discord.utils.get(guild_to.roles, name=key.name)
-                    overwrites_to[role] = value
+                    if role:
+                        overwrites_to[role] = value
                 try:
                     new_channel = await guild_to.create_voice_channel(
                         name=channel_voice.name,
@@ -162,7 +155,7 @@ class Clone:
             except discord.Forbidden:
                 print_error(f"Error While Creating Voice Channel: {channel_voice.name}")
             except discord.HTTPException:
-                print_error(f"Unable To Creating Voice Channel: {channel_voice.name}")
+                print_error(f"Unable To Create Voice Channel: {channel_voice.name}")
             except:
                 print_error(f"Error While Creating Voice Channel: {channel_voice.name}")
 
@@ -174,39 +167,46 @@ class Clone:
                 await emoji.delete()
                 print_delete(f"Deleted Emoji: {emoji.name}")
             except discord.Forbidden:
-                print_error(f"Error While Deleting Emoji{emoji.name}")
+                print_error(f"Error While Deleting Emoji: {emoji.name}")
             except discord.HTTPException:
-                print_error(f"Error While Deleting Emoji {emoji.name}")
+                print_error(f"Error While Deleting Emoji: {emoji.name}")
 
     @staticmethod
     async def emojis_create(guild_to: discord.Guild, guild_from: discord.Guild):
         emoji: discord.Emoji
-        for emoji in guild_from.emojis:
-            try:
-                emoji_image = await emoji.url.read()
-                await guild_to.create_custom_emoji(
-                    name=emoji.name,
-                    image=emoji_image)
-                print_add(f"Created Emoji {emoji.name}")
-            except discord.Forbidden:
-                print_error(f"Error While Creating Emoji {emoji.name} ")
-            except discord.HTTPException:
-                print_error(f"Error While Creating Emoji {emoji.name}")
+        async with aiohttp.ClientSession() as session:
+            for emoji in guild_from.emojis:
+                try:
+                    async with session.get(emoji.url) as resp:
+                        if resp.status == 200:
+                            emoji_image = await resp.read()
+                            await guild_to.create_custom_emoji(
+                                name=emoji.name,
+                                image=emoji_image)
+                            print_add(f"Created Emoji: {emoji.name}")
+                        else:
+                            print_error(f"Failed to download emoji: {emoji.name}")
+                except discord.Forbidden:
+                    print_error(f"Error While Creating Emoji: {emoji.name}")
+                except discord.HTTPException:
+                    print_error(f"Error While Creating Emoji: {emoji.name}")
 
     @staticmethod
     async def guild_edit(guild_to: discord.Guild, guild_from: discord.Guild):
         try:
-            try:
-                icon_image = await guild_from.icon_url.read()
-            except discord.errors.DiscordException:
-                print_error(f"Can't read icon image from {guild_from.name}")
-                icon_image = None
-            await guild_to.edit(name=f'{guild_from.name}')
-            if icon_image is not None:
-                try:
-                    await guild_to.edit(icon=icon_image)
-                    print_add(f"Guild Icon Changed: {guild_to.name}")
-                except:
-                    print_error(f"Error While Changing Guild Icon: {guild_to.name}")
+            await guild_to.edit(name=guild_from.name)
+            print_add(f"Guild Name Changed to: {guild_to.name}")
+            
+            if guild_from.icon:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(guild_from.icon.url) as resp:
+                        if resp.status == 200:
+                            icon_image = await resp.read()
+                            await guild_to.edit(icon=icon_image)
+                            print_add(f"Guild Icon Changed: {guild_to.name}")
+                        else:
+                            print_error(f"Failed to download icon from {guild_from.name}")
         except discord.Forbidden:
-            print_error(f"Error While Changing Guild Icon: {guild_to.name}")
+            print_error(f"Error While Changing Guild Settings: {guild_to.name}")
+        except Exception as e:
+            print_error(f"Error: {e}")
